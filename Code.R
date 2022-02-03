@@ -1,6 +1,4 @@
-#Assignment 2 - BE303
 #Anooshka Bajaj
-#Roll Number - b19004
 
 library(ggplot2)
 library(readxl)
@@ -19,7 +17,7 @@ rm (list = ls(all = T))
 #2.1 Two-way ANOVA
 -----------------------------------------------------------------------------------    
 
-#answer1
+#1
 r1 <- read_excel("E:/Sem 4/BE303 Applied Biostatistics/Data_LA2.xlsx", sheet = 1)
 df <- data.frame(r1)          #creating data frame of given excel sheet
 
@@ -37,7 +35,7 @@ view(df5_1)                   #creating required data frame (3XN)
 
 
 -----------------------------------------------------------------------------------
-#answer2
+#2
                               #2 way ANOVA for Groups and Factors
 anova2 <- aov(Value ~ Group + Factor, data = df5_1)
 summary(anova2)
@@ -49,7 +47,7 @@ summary(anova2_1)
 
 
 -----------------------------------------------------------------------------------
-#answer3
+#3
                               #creating box plot using ggplot                 
 p1 <- ggplot(data=df5_1, aes(x=Group,y=Value)) + 
       geom_boxplot(aes(fill=Factor)) +
@@ -72,7 +70,7 @@ interaction.plot(x.factor = df5_1$Group, trace.factor = df5_1$Factor,
 
 
 -----------------------------------------------------------------------------------
-#answer4
+#4
 tukeytest <- TukeyHSD(anova2 , ordered = TRUE )  #conducting post-hoc test (Tukey test)
 tukeytest
 
@@ -81,7 +79,7 @@ tukeytest
 #2.2 Linear Regression
 -----------------------------------------------------------------------------------
 
-#answer5
+#5
 r2 <- read_excel("E:/Sem 4/BE303 Applied Biostatistics/Data_LA2.xlsx", sheet = 2)      #importing the excel data set
 
 dff <- data.frame(r2)         #data frame of the required excel sheet
@@ -105,7 +103,7 @@ plot(p2)
 
 
 -----------------------------------------------------------------------------------
-#answer6
+#6
 x <- dff$x
 y <- dff$y
 model <- glm(y ~ x)           #glm(dependent variable ~ explanatory variable)
@@ -113,7 +111,7 @@ summary(model)
 
 
 -----------------------------------------------------------------------------------
-#answer7
+#7
 m <- (sum((x - meanx)*(y - meany)))/(sum((x - meanx)^2))
 b <- meany - m*meanx
 regression <- m*x + b
@@ -141,7 +139,7 @@ CI_bmin
 
 
 -----------------------------------------------------------------------------------
-#answer8
+#8
 Reg_max <- CI_bmax + CI_mmin*x   #linear regression with larger slope and smaller y-intercept
 Reg_min <- CI_bmin + CI_mmax*x   #linear regression with smaller slope
 
@@ -163,7 +161,7 @@ plot(p3)
 
 
 -----------------------------------------------------------------------------------
-#answer9
+#9
 plot(x, resid(model),pch=16,                          #scatter plot of residuals
         xlab="Weight of animal species [mg]",
         ylab="Residuals",
